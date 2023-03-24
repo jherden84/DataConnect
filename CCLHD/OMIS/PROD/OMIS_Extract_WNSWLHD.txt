@@ -53,6 +53,7 @@
 * 20191003: InitConsultDate - Added 110
 * 20191010: Removed Activity Type Filter
 * 20220606: Update to single extract all Facilities.
+*testitng branch
 ******************************************************************/
 
 --use [MOSAIQ]
