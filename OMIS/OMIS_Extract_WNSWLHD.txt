@@ -66,7 +66,7 @@ set @startdate = '2021-10-01'		-- start of month
 set @enddate = '2021-12-31'			-- end of month
 --set @hosp_code = 'WNSW'				-- Hospital code (ignore):  K211 = Dubbo, L216 = ORANGE, S201 = Broken Hill, L201 = Bathurst
 set @QA = 'n'						-- Y = QA mode, N = final output for upload to CI
-set @showheader = 'y'				-- Y = show file name, N = omit file name 
+set @showheader = 'n'				-- Y = show file name, N = omit file name 
  
 
 
