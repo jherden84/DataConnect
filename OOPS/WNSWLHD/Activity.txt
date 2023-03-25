@@ -68,5 +68,5 @@ AND (Schedule.App_DtTm>= CAST(  '&[ReportingStartDate]&' AS DATETIME)
 AND Schedule.App_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
 --AND Staff_Location.Last_Name NOT  LIKE 'Z_%'
 AND Schedule.ESI_AppointmentID = ''
---AND NOT(Schedule.Pat_ID1 IN ('" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "''))
+AND NOT(Schedule.Pat_ID1 IN ('&[TestPatientList]&')
  
