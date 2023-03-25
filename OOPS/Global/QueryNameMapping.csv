@@ -1,0 +1,15 @@
+Query,FileName
+Activity,Activity.txt
+Address_Mapping,Address_Mapping.txt
+CPlan_Library,CPlan_Library.txt
+DateMaster,embedded
+Location_Library,Location_Library.txt
+PRMS_Data,PRMS_Data.txt
+PRMS_TxLink,PRMS_TxLink.txt
+Proc_Library,Proc_Library.txt
+Referral_Charge,Referral_Charge.txt
+Repo_Files,embedded
+Staff_Library,Staff_Library.txt
+Test_PatientList,Test_PatientList.txt
+Treatment,Treatment.txt
+FileMapping,QueryNameMapping.csv
