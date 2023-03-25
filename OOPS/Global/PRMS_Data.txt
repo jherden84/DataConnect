@@ -48,4 +48,4 @@ AND ObsReq.Version = 0
 AND ObsReq.Status_Enum <> 1
 AND Observe.Pat_ID1 >10000
 AND ObsReq.Pat_ID1 >10000
-AND NOT(ObsReq.Pat_ID1 IN (" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "))
+AND NOT(ObsReq.Pat_ID1 IN (&[TestPatientList]&))

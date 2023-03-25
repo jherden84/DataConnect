@@ -55,4 +55,4 @@ FROM #PatTx
 INNER JOIN #ObsReq ON #PatTx.Pat_ID1 = #ObsReq.Pat_ID1 
 			AND convert(date, #ObsReq.Obs_DtTm) >= convert(date, #PatTx.min_admin)  --assumption here that the min_admin is at the start of cycle
 			AND convert(date,#ObsReq.Obs_DtTm) <= convert(date,#PatTx.min_admin+Cycle_Length)	-- this could inflat the end date is min_admin is not at start of cycle
-Where NOT(#PatTx.Pat_ID1 IN (" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "))
+Where NOT(#PatTx.Pat_ID1 IN (&[TestPatientList]&))

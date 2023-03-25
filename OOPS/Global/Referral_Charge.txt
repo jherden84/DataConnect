@@ -30,8 +30,8 @@ Select
  INNER JOIN Admin ON Charge.Pat_ID1 = Admin.Pat_ID1
 
 Where 1=1
- AND (Charge.Proc_DtTm>=CAST('"& Text.From(ReportingStartDate) &"' AS DATETIME) 
- AND Charge.Proc_DtTm<CAST('"& Text.From(ReportingEndDate) &"' AS DATETIME) )
+ AND (Charge.Proc_DtTm>=CAST(  '&[ReportingStartDate]&' AS DATETIME)  
+ AND Charge.Proc_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
  /*AND CPT.Hsp_Code IN (	/*Select Intial Appts*/
 						Select DISTINCT Hsp_Code -- , Short_Desc, Description, Alt_Description
 						From CPT 
@@ -43,4 +43,4 @@ Where 1=1
 AND Charge.Void = 0
 AND Charge.Non_Billable = 0
 AND Charge.Billable = 1
-AND NOT(Charge.Pat_ID1 IN (" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "))
+AND NOT(Charge.Pat_ID1 IN (&[TestPatientList]&))

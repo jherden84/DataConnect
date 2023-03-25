@@ -202,9 +202,9 @@ LEFT OUTER JOIN -- returns a PCP_Group_ID with 1 if its the Careplan is the min 
     LEFT OUTER JOIN Config ON CTE_cp.Inst = Config.Inst_Id
 
 WHERE 1=1
-AND NOT(p.Pat_ID1 IN (" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "))
-AND (CTE_cp.minAdmin>= CAST('"& Text.From(ReportingStartDate) &"' AS DATETIME) 
-AND CTE_cp.minAdmin<CAST('"& Text.From(ReportingEndDate) &"' AS DATETIME)) 
+AND NOT(p.Pat_ID1 IN (&[TestPatientList]&))
+AND (CTE_cp.minAdmin>= CAST('&[ReportingStartDate]&' AS DATETIME) 
+AND CTE_cp.minAdmin<CAST('&[ReportingEndDate]&' AS DATETIME)) 
 
 --AND Cycle_Number = 1
 --AND (CTE_cp.Start_DtTm>=@startdate 
