@@ -64,8 +64,8 @@ WHERE 1=1
 AND Schedule.Version=0 -- Current Appt Version only.
 AND Schedule.Pat_ID1 >10000 -- only patient appts, can remove is you want non-patient appts. 
 --AND Schedule.Inst_ID<>3 -- Inst_ID Filtering 
-AND (Schedule.App_DtTm>= CAST(  &[ReportingStartDate]& AS DATETIME) 
-AND Schedule.App_DtTm<CAST( &[ReportingEndDate]& AS DATETIME)) 
+AND (Schedule.App_DtTm>= CAST(  '&[ReportingStartDate]&' AS DATETIME) 
+AND Schedule.App_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
 --AND Staff_Location.Last_Name NOT  LIKE 'Z_%'
 AND Schedule.ESI_AppointmentID = ''
 --AND NOT(Schedule.Pat_ID1 IN ('" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "''))
