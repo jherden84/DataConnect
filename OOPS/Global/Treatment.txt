@@ -63,7 +63,7 @@ AND pa.Version = 0
 AND pa.Adm_DtTm IS NOT NULL
 AND Cycle_Number IS NOT NULL
 AND Orders.Inst_ID <> 3 --careplan inst
-AND NOT(Orders.Pat_ID1 IN (" & Text.Combine(List.Transform(Test_PatientList[Pat_ID1], Text.From), ",") & "))
+AND NOT(Orders.Pat_ID1 IN (&[TestPatientList]&))
 
 GROUP BY 
 pc2.PCP_Group_ID, 
