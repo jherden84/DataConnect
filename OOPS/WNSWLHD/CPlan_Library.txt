@@ -15,7 +15,7 @@ END ) as ProtocolID,
 Select 'D'+ convert(varchar, ISNULL((Day_Offset+1), 0))+': ' +
 (--sub query returns the appts for the given cycle and day offset.
 Select 
-RTRIM(Hsp_Code) +' ('+RTRIM(ISNULL(dbo.fn_ConvertTimeIntToDurationHrMin(Default_Time), ''))+'), ' as ""data()""
+RTRIM(Hsp_Code) +' ('+RTRIM(ISNULL(dbo.fn_ConvertTimeIntToDurationHrMin(Default_Time), ''))+'), ' as "data()"
 From CPlan CPlan1
 INNER JOIN CPItem CPItem1 ON CPlan1.CPL_ID=CPItem1.CPL_ID
 INNER JOIN CPAct CPAct1 ON CPItem1.CPA_ID = CPAct1.CPA_ID
@@ -29,7 +29,7 @@ CPAct1.Inactive <> 1 AND
 (Cycle1 = 1 OR All_Cycles = 1) AND
 CPItem1.Day_Offset = CPItem.Day_Offset
 FOR XML PATH('')
-) as ""data()""
+) as "data()"
 
 From CPlan
 INNER JOIN CPItem ON CPlan.CPL_ID=CPItem.CPL_ID
@@ -51,7 +51,7 @@ FOR XML PATH('')
 Select 'D'+ convert(varchar, ISNULL((Day_Offset+1), 0))+': ' +
 (--sub query returns the appts for the given cycle and day offset.
 Select 
-RTRIM(Hsp_Code) +' ('+RTRIM(ISNULL(dbo.fn_ConvertTimeIntToDurationHrMin(Default_Time), ''))+'), ' as ""data()""
+RTRIM(Hsp_Code) +' ('+RTRIM(ISNULL(dbo.fn_ConvertTimeIntToDurationHrMin(Default_Time), ''))+'), ' as "data()"
 From CPlan CPlan1
 INNER JOIN CPItem CPItem1 ON CPlan1.CPL_ID=CPItem1.CPL_ID
 INNER JOIN CPAct CPAct1 ON CPItem1.CPA_ID = CPAct1.CPA_ID
@@ -65,7 +65,7 @@ CPAct1.Inactive <> 1 AND
 (Cycle2 = 1 OR All_Cycles = 1) AND
 CPItem1.Day_Offset = CPItem.Day_Offset
 FOR XML PATH('')
-) as ""data()""
+) as "data()"
 
 From CPlan
 INNER JOIN CPItem ON CPlan.CPL_ID=CPItem.CPL_ID
