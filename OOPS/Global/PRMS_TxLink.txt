@@ -1,4 +1,4 @@
-if object_id('tempdb..#ObsDef') is not null
+ if object_id('tempdb..#ObsDef') is not null
 drop table #ObsDef
 if object_id('tempdb..#PatTx') is not null
 drop table #PatTx

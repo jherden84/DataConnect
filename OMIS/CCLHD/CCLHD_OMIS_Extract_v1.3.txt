@@ -31,8 +31,8 @@ There are three main queries
 declare @startdate date, @enddate date, @debug char(1), @hospital varchar(20) , @QA char(1), @showheader varchar(1)
 -- ,@hosp_code varchar(10), @deptcode varchar(10), @facicode varchar(10), @dt varchar(25)
 
-set @startdate = '2022-05-01'		         -- start of month
-set @enddate = '2022-05-05'			-- end of month
+set @startdate =  '&[ReportingStartDate]&'	-- start of month
+set @enddate =  '&[ReportingEndDate]&'		-- end of month
 set @QA = 'n'					-- Y = show real dates, N = DDMMYYYY
 set @showheader = 'n'				-- Y = show file name, N = omit file name 
 --set @hospital = ''				-- Commented out.
