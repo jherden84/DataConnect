@@ -25,10 +25,6 @@ There are three main queries
 *20220331	OMISDrugName is not null added to remove blank drug rows.
 *20220505	Added fallback for missing Facility to Gosford (should only occur for patient administered from ward with no other appts in MOSAIQ)
 **********************************************************************************************************************************/
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-SET nocount on
-SET ANSI_WARNINGS OFF
-
 --use [MOSAIQREPORT]
 --go 
  
@@ -41,7 +37,9 @@ set @QA = 'n'					-- Y = show real dates, N = DDMMYYYY
 set @showheader = 'n'				-- Y = show file name, N = omit file name 
 --set @hospital = ''				-- Commented out.
 
-
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SET nocount on
+SET ANSI_WARNINGS OFF
  
 /*
 select  @deptcode = Department_OID  , @facicode = pager  from config where Inst_Abrv = @hospital	-- Hospital code: A212 
