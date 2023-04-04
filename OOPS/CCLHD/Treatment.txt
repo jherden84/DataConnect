@@ -1,3 +1,6 @@
+--Updated to filter Inst_ID <> 3
+
+
 
 
 WITH CTE_cp AS --CTE_cp is the unique careplan/cycle list
@@ -62,7 +65,7 @@ AND Orders.Status_Enum IN (2,3,5,22)
 AND pa.Version = 0 
 AND pa.Adm_DtTm IS NOT NULL
 AND Cycle_Number IS NOT NULL
---AND Orders.Inst_ID <> 3 --careplan inst
+AND Orders.Inst_ID <> 3 --careplan inst
 AND NOT(Orders.Pat_ID1 IN (&[TestPatientList]&))
 
 GROUP BY 
@@ -209,7 +212,6 @@ AND CTE_cp.minAdmin<CAST('&[ReportingEndDate]&' AS DATETIME))
 --AND Cycle_Number = 1
 --AND (CTE_cp.Start_DtTm>=@startdate 
 --AND CTE_cp.Start_DtTm< DateAdd(day,1, @enddate)) 
-
 --order by CTE_cp.ORC_Set_ID
     
 
