@@ -1905,7 +1905,7 @@ select distinct isnull(cast(GroupID  as varchar(11)),'') as GroupID
 	, isnull(cast(NotificationEpisodeChemoFrequencyUnit as varchar(1)),'') as NotificationEpisodeChemoFrequencyUnit
 	, isnull(cast(NotificationEpisodeChemoDay as varchar(15)),'') as NotificationEpisodeChemoDay
 	, isnull(replace(right('0'+convert(varchar(10),ReferralDate, 103),10),'/',''),'') as ReferralDate
-	, isnull(replace(right('0'+convert(varchar(10),ConsultationDate , 103),10),'/',''),'') as ConsultationDatea
+	, isnull(replace(right('0'+convert(varchar(10),ConsultationDate , 103),10),'/',''),'') as ConsultationDate
 	, isnull(replace(right('0'+convert(varchar(10),ClinicalTrialDate, 103),10),'/',''),'') as ClinicalTrialDate
 	, isnull(cast(ClinicalTrialName as varchar(100)),'') as ClinicalTrialName
 	, isnull(replace(right('0'+convert(varchar(10),MDTDate, 103),10),'/',''),'') as MDTDate
