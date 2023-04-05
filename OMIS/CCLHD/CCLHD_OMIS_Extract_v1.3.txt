@@ -1724,7 +1724,7 @@ select distinct	cast(GroupID  as varchar(20)) as GroupID
 	,	ClinicalTrialDate
 	,	ClinicalTrialName
 	,	MDTDate
-	,	ReferalToPalliativeCareDate
+	,	ReferalToPalliativeCareDate 
 	,	PerformanceStatusDate
 	,	PerformanceStatus
 	,	CPL_ID
@@ -1909,7 +1909,7 @@ select distinct isnull(cast(GroupID  as varchar(11)),'') as GroupID
 	, isnull(replace(right('0'+convert(varchar(10),ClinicalTrialDate, 103),10),'/',''),'') as ClinicalTrialDate
 	, isnull(cast(ClinicalTrialName as varchar(100)),'') as ClinicalTrialName
 	, isnull(replace(right('0'+convert(varchar(10),MDTDate, 103),10),'/',''),'') as MDTDate
-	, isnull(replace(right('0'+convert(varchar(10),ReferalToPalliativeCareDate , 103),10),'/',''),'') as ReferalToPalliativeCareDate
+	, isnull(replace(right('0'+convert(varchar(10),ReferalToPalliativeCareDate , 103),10),'/',''),'') as ReferralToPalliativeCareDate
 	, isnull(replace(right('0'+convert(varchar(10),PerformanceStatusDate, 103),10),'/',''),'') as PerformanceStatusDate
 	, isnull(cast(PerformanceStatus as varchar(1)),'') as PerformanceStatus 
 from #omis_final  )
