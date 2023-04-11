@@ -12,7 +12,7 @@
 * 20171206: st licence -> AHPRA, tnmstagedate -> Edit_DtTm, added cplan name, regimen, and ID to QA output, blank out AntiNeoplasticCycles if episodeenddate not present, 
 			initial treatment 0 -> 2, other staging field length 6 -> 14, clinical trial to patient and group id level, ecog/performance > dx date, remove 2200 ireland country code
 * 20171211: remove space from cancer site code, null MRN, episodeintent default to 9, debugging cancer site code not in (B,C,D,L), 
-* 20180111: IDC to MRN, IDA to AUID, CancerSiteCodeID: CNNN - ICDO3, CNN.NN - ICD10, update drug admin amt >= 0, 'Maintenance' added for episodeintent, C50 for ICD10V2 -> ICD10V3, format medicare no.
+* 20180111: IDC to MRN, IDA to AUID, CancerSiteCodeID: CNNN - ICDO3, CNN.NN - ICD10, update drug admin amt >= 0, "Maintenance" added for episodeintent, C50 for ICD10V2 -> ICD10V3, format medicare no.
 * 20180112: added 'unk' to stagegroup map ,
 * 20180222: updated ICD03 site code formatting, update debug null string count, 
 * 20180226: filter by Rx admin date only at PCP level.
@@ -27,7 +27,7 @@
 * 20180326: get max tnm_id for staging, update initial_treament logic, 
 * 20180418: remove date param for initial_treatment, update ClinicalTrialName, added space in WayfareAddress, 
 * 20180808: update last admin date logic to < (@enddate - cycle length*2), remove reference to discontinue/plan end date. Antineoplastic cycle in line with last admin date
-			@enddate set to today if in the future, last admin date logic remove 'approved' status, first/last admin date updated status types 
+			@enddate set to today if in the future, last admin date logic remove "approved" status, first/last admin date updated status types 
 * 20180816:	medical remove link to primary medical
 * 20180820:	remove comma in address field
 * 20180824: null 1 char alias name and givenname2, HistopathologicalGradeID default to null
@@ -36,8 +36,8 @@
 * 20180921: update patient schedule count group by to patient only
 * 20181002: Updated mapping for BestBasisofDx and Laterality
 * 20181017: Added 'ECOG Performance Status' in ObsDef(Assessment)
-* 20181018: Commented out 'Location_name' - was once used for more specific counts but is not required (refer to the update @20180921)
-* 20181023: MDT date is extracted from 'Documents' (MDTLetterDate) and if the checklist MDTDate is NULL then MDTLetterDate is populated
+* 20181018: Commented out "Location_name" - was once used for more specific counts but is not required (refer to the update @20180921)
+* 20181023: MDT date is extracted from "Documents" (MDTLetterDate) and if the checklist MDTDate is NULL then MDTLetterDate is populated
 * 20181203: Replaced '%MDT -%' with '%MDT%' to pull out more MDT types
 * 20190218: Replaced '%MDT%' with '%MDT -%' to pull out more MDT types (reverted) and remove comma from MiddleName
 * 20190221: (1) MDT date should be Max 28 days before treatment start date AND Greater than Diagnosis Date. (2) Date of Referral to include PatAuth.Req_DtTm and Consultation Date to include PatAuth.Eff_DtTm. (3) ECOG Date-shorten the period from 1 year to 28 days.
