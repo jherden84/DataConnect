@@ -5,7 +5,7 @@ SELECT
 	,ObsReq.OBR_SET_ID
 	,ObsReq.Pat_ID1
 	,ObsReq.Create_DtTm
-	,ISNULL(dbo.fn_GetObsResult(Observe.OBX_ID, 0), '') AS Result
+	,ISNULL(fn_GetObsResult(Observe.OBX_ID, 0), '') AS Result
 	,ObsDef_label.Code
 	,ObsReq.Panel_Code
 	,ObsReq.Filler_Order --unique Identifier for PRMS
@@ -17,15 +17,15 @@ SELECT
 	,Attending.Type as Attending_Type
 	,Attending.Last_Name as Attending_Last_Name
 	,Attending.First_Name as Attending_First_Name
-	, ISNULL(dbo.fn_GetPatientAgeDistribution(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_AgeBand
-	,ISNULL(dbo.fn_GetPatientAgeYears(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_Age
+	, ISNULL(fn_GetPatientAgeDistribution(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_AgeBand
+	,ISNULL(fn_GetPatientAgeYears(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_Age
 	
 
 
-FROM MOSAIQ.dbo.ObsReq ObsReq (nolock)
-INNER JOIN MOSAIQ.dbo.Observe Observe (nolock)
+FROM ObsReq ObsReq (nolock)
+INNER JOIN Observe Observe (nolock)
 	 ON ObsReq.OBR_SET_ID = Observe.OBR_SET_ID
-INNER JOIN MOSAIQ.dbo.ObsDef ObsDef_label (nolock)
+INNER JOIN ObsDef ObsDef_label (nolock)
 	 ON Observe.OBD_ID = ObsDef_label.OBD_ID
 INNER JOIN Admin a (nolock)
  ON ObsReq.Pat_ID1 = a.Pat_ID1
