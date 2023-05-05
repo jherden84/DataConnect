@@ -1,5 +1,5 @@
-   
-Select DISTINCT CPT.PRS_ID, 
+
+Select CPT.PRS_ID, 
 CGroup, Hsp_Code, 
 Hsp_Code2, Hsp_Code3, 
 Hsp_Code4, Hsp_Code5, 
@@ -15,9 +15,17 @@ Rsp_Center,
 Deleted, ScheduleColor, 
 CPT.Create_DtTm, 
 CPT.Edit_DtTm, 
-recs.Text
+(Select max(Text) From PROMPT Where PGroup LIKE 'CPT4' AND Text LIKE CPT.CGroup+'%') as Text
 
+FROM CPT
+--INNER JOIN (Select Text From PROMPT Where PGroup LIKE 'CPT4' ) as recs ON recs.Text LIKE CPT.CGroup+'%' -- This will show only assigned procedures in the PROMPT Table
+Where deleted  =0
+AND Supply_Type  =0
+
+
+/*
 FROM CPT
 INNER JOIN (Select Text From PROMPT Where PGroup LIKE 'CPT4' ) as recs ON recs.Text LIKE CPT.CGroup+'%' -- This will show only assigned procedures in the PROMPT Table
 Where deleted  =0
 AND Supply_Type  =0
+*/
