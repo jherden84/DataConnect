@@ -1,11 +1,11 @@
    
-Select CPT.PRS_ID, 
+Select DISTINCT CPT.PRS_ID, 
 CGroup, Hsp_Code, 
 Hsp_Code2, Hsp_Code3, 
 Hsp_Code4, Hsp_Code5, 
 CPT_Code, Status_Inactive, 
 Billable, Cost, 
---ISNULL(dbo.fn_ConvertTimeIntToDurationHrMin(Default_Time), '') as Default_Time, 
+/*ISNULL(dbo.fn_ConvertTimeIntToDurationHrMin(Default_Time), '') as Default_Time, */
 Tiny_Desc, 
 Short_Desc, 
 CPT.Description, 
