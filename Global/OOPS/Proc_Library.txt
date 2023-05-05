@@ -1,4 +1,3 @@
-
 Select CPT.PRS_ID, 
 CGroup, Hsp_Code, 
 Hsp_Code2, Hsp_Code3, 
@@ -15,7 +14,7 @@ Rsp_Center,
 Deleted, ScheduleColor, 
 CPT.Create_DtTm, 
 CPT.Edit_DtTm, 
-(Select max(Text) From PROMPT Where PGroup LIKE 'CPT4' AND Text LIKE CPT.CGroup+'%') as Text
+ISNULL((Select max(Text) From PROMPT Where PGroup LIKE 'CPT4' AND Text LIKE CPT.CGroup+'%'), 'Hidden') as Text
 
 FROM CPT
 --INNER JOIN (Select Text From PROMPT Where PGroup LIKE 'CPT4' ) as recs ON recs.Text LIKE CPT.CGroup+'%' -- This will show only assigned procedures in the PROMPT Table
