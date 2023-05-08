@@ -17,8 +17,8 @@ AND
 (UPPER(Last_Name) LIKE 'TEST%'
 OR  UPPER(Last_Name) LIKE 'ZZ%'
 OR  UPPER(Last_Name) LIKE 'XX%'
-OR NOT(Ident.IDA LIKE '[0-9]%')
-OR len(Ident.IDA) <> 7
+--OR NOT(Ident.IDA LIKE '[0-9]%')
+--OR len(Ident.IDA) <> 7
 )
 
 
