@@ -5,7 +5,7 @@ SELECT
 	,ObsReq.OBR_SET_ID
 	,ObsReq.Pat_ID1
 	,ObsReq.Create_DtTm
-	,ISNULL(fn_GetObsResult(Observe.OBX_ID, 0), '') AS Result
+	,ISNULL(dbo.fn_GetObsResult(Observe.OBX_ID, 0), '') AS Result
 	,ObsDef_label.Code
 	,ObsReq.Panel_Code
 	,ObsReq.Filler_Order --unique Identifier for PRMS
@@ -17,8 +17,8 @@ SELECT
 	,Attending.Type as Attending_Type
 	,Attending.Last_Name as Attending_Last_Name
 	,Attending.First_Name as Attending_First_Name
-	, ISNULL(fn_GetPatientAgeDistribution(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_AgeBand
-	,ISNULL(fn_GetPatientAgeYears(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_Age
+	, ISNULL(dbo.fn_GetPatientAgeDistribution(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_AgeBand
+	,ISNULL(dbo.fn_GetPatientAgeYears(a.Pat_ID1,  ObsReq.Obs_DtTm),'') as Pt_Age
 	
 
 
