@@ -9,8 +9,8 @@ WHEN (c.Regimen = '1570' or COALESCE(LTRIM(RTRIM(c.Regimen)),'X') = 'X' or (isnu
 --WHEN UPPER(c.Regimen)  LIKE '% Trial%' THEN 'TRIAL'
 WHEN c.Regimen <> '1570' and (isnumeric(c.Regimen)  = 1  or ISNUMERIC(replace(replace(replace(substring(c.Regimen,1,charindex(' ',c.Regimen)),'/',''),'b',''),'a','')) = 1)  THEN 'EVIQ'
 ELSE '**UNMAPPED**' 
-END ) as ProtocolID,
-/*
+END ) as ProtocolID
+/*,
 (
 Select 'D'+ convert(varchar, ISNULL((Day_Offset+1), 0))+': ' +
 (--sub query returns the appts for the given cycle and day offset.
