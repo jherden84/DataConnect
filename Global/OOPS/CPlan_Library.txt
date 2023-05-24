@@ -10,7 +10,7 @@ WHEN (c.Regimen = '1570' or COALESCE(LTRIM(RTRIM(c.Regimen)),'X') = 'X' or (isnu
 WHEN c.Regimen <> '1570' and (isnumeric(c.Regimen)  = 1  or ISNUMERIC(replace(replace(replace(substring(c.Regimen,1,charindex(' ',c.Regimen)),'/',''),'b',''),'a','')) = 1)  THEN 'EVIQ'
 ELSE '**UNMAPPED**' 
 END ) as ProtocolID,
-
+/*
 (
 Select 'D'+ convert(varchar, ISNULL((Day_Offset+1), 0))+': ' +
 (--sub query returns the appts for the given cycle and day offset.
@@ -66,7 +66,7 @@ CPAct1.Inactive <> 1 AND
 CPItem1.Day_Offset = CPItem.Day_Offset
 FOR XML PATH('')
 ) as "data()"
-
+*/
 From CPlan
 INNER JOIN CPItem ON CPlan.CPL_ID=CPItem.CPL_ID
 INNER JOIN CPAct ON CPItem.CPA_ID = CPAct.CPA_ID
