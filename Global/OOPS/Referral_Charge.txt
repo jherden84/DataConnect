@@ -42,5 +42,5 @@ Where 1=1
 --AND CPT.Deleted = 0 --ignore as this has been charged.
 AND Charge.Void = 0
 AND Charge.Non_Billable = 0
-AND Charge.Billable = 1
+--AND Charge.Billable = 1 --many site dont use this flag. But non-billable is often used.
 AND NOT(Charge.Pat_ID1 IN (&[TestPatientList]&))
