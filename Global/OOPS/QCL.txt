@@ -1,0 +1,25 @@
+
+Select 
+Chk_id, Chk_set_id, Chklist.Create_DtTm, Chklist.Edit_DtTm, Chklist.Sanct_DtTm, Pat_ID1, Due_DtTm, Elpsd_Action, Act_DtTm, Activity, Rsp_Staff_ID, Req_Staff_ID, Com_Staff_ID, Complete
+--Rsp
+,Stf_Rsp.Type as Rsp_Type, Stf_Rsp.Initials as Rsp_Initial, Stf_Rsp.First_Name as Rsp_FirstName,  Stf_Rsp.Last_Name as Rsp_LastName
+--Req
+,Stf_Req.Type as Req_Type, Stf_Req.Initials as Req_Initials, Stf_Req.First_Name as Req_First,  Stf_Req.Last_Name as Req_LastName
+--Com (hold as link in Report)
+,Stf_comp.Type as Comp_Type, Stf_comp.Initials as Comp_Initials, Stf_comp.First_Name as Comp_First,  Stf_comp.Last_Name as Comp_LastName
+
+
+
+From Chklist
+--LEFT OUTER JOIN QCLTask ON Chklist.TSK_ID = QCLTask.TSK_ID 
+LEFT OUTER JOIN Staff Stf_comp ON Com_Staff_ID = Stf_comp.Staff_ID
+LEFT OUTER JOIN Staff Stf_Rsp ON Rsp_Staff_ID = Stf_Rsp.Staff_ID
+LEFT OUTER JOIN Staff Stf_Req ON Req_Staff_ID = Stf_Req.Staff_ID
+
+Where Version = 0
+AND Suppressed = 0
+AND NOT(Chklist.Pat_ID1 IN (&[TestPatientList]&))
+AND (Due_DtTm>=CAST(  '&[ReportingStartDate]&' AS DATETIME)  
+AND Due_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
+
+
