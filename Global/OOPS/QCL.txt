@@ -14,11 +14,11 @@ Chklist.Complete,
 
 
 --Rsp
-Rsp_Staff_ID, Stf_Rsp.Type as Rsp_Type, Stf_Rsp.Initials as Rsp_Initial, Stf_Rsp.First_Name as Rsp_FirstName,  Stf_Rsp.Last_Name as Rsp_LastName,
+Rsp_Staff_ID, Stf_Rsp.Type as Rsp_Type, Stf_Rsp.Initials as Rsp_Initial,   Stf_Rsp.Last_Name+', '+ISNULL(Stf_Rsp.First_Name,'') as Rsp_Name,
 --Req
-Req_Staff_ID, Stf_Req.Type as Req_Type, Stf_Req.Initials as Req_Initials, Stf_Req.First_Name as Req_First,  Stf_Req.Last_Name as Req_LastName,
+Req_Staff_ID, Stf_Req.Type as Req_Type, Stf_Req.Initials as Req_Initials,  Stf_Req.Last_Name+', '+ISNULL(Stf_Req.First_Name, '') as Req_Name,
 --Com (hold as link in Report)
-Com_Staff_ID, Stf_comp.Type as Comp_Type, Stf_comp.Initials as Comp_Initials, Stf_comp.First_Name as Comp_First,  Stf_comp.Last_Name as Comp_LastName
+Com_Staff_ID, Stf_comp.Type as Comp_Type, Stf_comp.Initials as Comp_Initials, Stf_comp.Last_Name+', '+ISNULL(Stf_comp.First_Name,'') as Comp_Name
 
 
 
