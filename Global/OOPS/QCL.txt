@@ -33,7 +33,7 @@ Where 1=1
 AND Version = 0
 AND Suppressed = 0
 AND NOT(Chklist.Pat_ID1 IN (&[TestPatientList]&))
-AND (Due_DtTm>=CAST(  '&[ReportingStartDate]&' AS DATETIME)  
-AND Due_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
+AND (Chklist.Due_DtTm>=CAST(  '&[ReportingStartDate]&' AS DATETIME)  
+AND Chklist.Due_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
 
 
