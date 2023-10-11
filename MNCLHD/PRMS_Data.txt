@@ -1,3 +1,28 @@
+ 
+SELECT 
+Patient.Pat_ID1, 
+Last_Name, 
+First_Name, 
+Ident.IDA, 
+Ident.IDB, 
+Ident.IDC, 
+Clin_Status
+
+INTO #testpt
+FROM Patient
+INNER JOIN Ident ON Patient.Pat_ID1 = Ident.Pat_ID1 AND Ident.Version = 0
+Where 1=1 
+AND Clin_Status <>10
+AND 
+(UPPER(Last_Name) LIKE 'TEST%'
+OR  UPPER(Last_Name) LIKE 'ZZ%'
+OR  UPPER(Last_Name) LIKE 'XX%'
+--OR NOT(Ident.IDA LIKE '[0-9]%')
+--OR len(Ident.IDA) <> 7
+)
+
+
+
 
 SELECT
 	 ObsReq.Obs_DtTm
@@ -48,4 +73,4 @@ AND ObsReq.Version = 0
 AND ObsReq.Status_Enum <> 1
 AND Observe.Pat_ID1 >10000
 AND ObsReq.Pat_ID1 >10000
-AND NOT(ObsReq.Pat_ID1 IN (&[TestPatientList]&))
+AND NOT(ObsReq.Pat_ID1 IN (SELECT Pat_ID1 FROM #testpt ))

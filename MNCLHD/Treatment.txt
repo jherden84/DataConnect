@@ -1,3 +1,28 @@
+SELECT 
+Patient.Pat_ID1, 
+Last_Name, 
+First_Name, 
+Ident.IDA, 
+Ident.IDB, 
+Ident.IDC, 
+Clin_Status
+
+INTO #testpt
+FROM Patient
+INNER JOIN Ident ON Patient.Pat_ID1 = Ident.Pat_ID1 AND Ident.Version = 0
+Where 1=1 
+AND Clin_Status <>10
+AND 
+(UPPER(Last_Name) LIKE 'TEST%'
+OR  UPPER(Last_Name) LIKE 'ZZ%'
+OR  UPPER(Last_Name) LIKE 'XX%'
+--OR NOT(Ident.IDA LIKE '[0-9]%')
+--OR len(Ident.IDA) <> 7
+)
+
+
+
+
 WITH CTE_cp AS --CTE_cp is the unique careplan/cycle list
 (
 SELECT  
@@ -61,7 +86,7 @@ AND pa.Version = 0
 AND pa.Adm_DtTm IS NOT NULL
 AND Cycle_Number IS NOT NULL
 --AND Orders.Inst_ID <> 3 --careplan inst
-AND NOT(Orders.Pat_ID1 IN (&[TestPatientList]&))
+AND NOT(Orders.Pat_ID1 IN (SELECT Pat_ID1 FROM #testpt ))
 
 GROUP BY 
 pc2.PCP_Group_ID, 
@@ -213,7 +238,7 @@ LEFT OUTER JOIN -- returns a PCP_Group_ID with 1 if its the Careplan is the min 
 
 
 WHERE 1=1
-AND NOT(p.Pat_ID1 IN (&[TestPatientList]&))
+AND NOT(p.Pat_ID1 IN (SELECT Pat_ID1 FROM #testpt ))
 AND (CTE_cp.minAdmin>= CAST('&[ReportingStartDate]&' AS DATETIME) 
 AND CTE_cp.minAdmin<CAST('&[ReportingEndDate]&' AS DATETIME)) 
 

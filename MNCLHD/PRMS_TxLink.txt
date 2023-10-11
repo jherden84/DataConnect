@@ -1,3 +1,29 @@
+
+SELECT 
+Patient.Pat_ID1, 
+Last_Name, 
+First_Name, 
+Ident.IDA, 
+Ident.IDB, 
+Ident.IDC, 
+Clin_Status
+
+INTO #testpt
+FROM Patient
+INNER JOIN Ident ON Patient.Pat_ID1 = Ident.Pat_ID1 AND Ident.Version = 0
+Where 1=1 
+AND Clin_Status <>10
+AND 
+(UPPER(Last_Name) LIKE 'TEST%'
+OR  UPPER(Last_Name) LIKE 'ZZ%'
+OR  UPPER(Last_Name) LIKE 'XX%'
+--OR NOT(Ident.IDA LIKE '[0-9]%')
+--OR len(Ident.IDA) <> 7
+)
+
+
+
+
  if object_id('tempdb..#ObsDef') is not null
 drop table #ObsDef
 if object_id('tempdb..#PatTx') is not null
@@ -55,4 +81,4 @@ FROM #PatTx
 INNER JOIN #ObsReq ON #PatTx.Pat_ID1 = #ObsReq.Pat_ID1 
 			AND convert(date, #ObsReq.Obs_DtTm) >= convert(date, #PatTx.min_admin)  --assumption here that the min_admin is at the start of cycle
 			AND convert(date,#ObsReq.Obs_DtTm) <= convert(date,#PatTx.min_admin+Cycle_Length)	-- this could inflat the end date is min_admin is not at start of cycle
-Where NOT(#PatTx.Pat_ID1 IN (&[TestPatientList]&))
+Where NOT(#PatTx.Pat_ID1 IN (SELECT Pat_ID1 FROM #testpt ))

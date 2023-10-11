@@ -1,3 +1,27 @@
+SELECT 
+Patient.Pat_ID1, 
+Last_Name, 
+First_Name, 
+Ident.IDA, 
+Ident.IDB, 
+Ident.IDC, 
+Clin_Status
+
+INTO #testpt
+FROM Patient
+INNER JOIN Ident ON Patient.Pat_ID1 = Ident.Pat_ID1 AND Ident.Version = 0
+Where 1=1 
+AND Clin_Status <>10
+AND 
+(UPPER(Last_Name) LIKE 'TEST%'
+OR  UPPER(Last_Name) LIKE 'ZZ%'
+OR  UPPER(Last_Name) LIKE 'XX%'
+--OR NOT(Ident.IDA LIKE '[0-9]%')
+--OR len(Ident.IDA) <> 7
+)
+
+
+
 Select 
 Chk_id, 
 Chk_set_id, 
@@ -32,7 +56,7 @@ LEFT OUTER JOIN Staff Stf_Req ON Req_Staff_ID = Stf_Req.Staff_ID
 Where 1=1
 AND Version = 0
 AND Suppressed = 0
-AND NOT(Chklist.Pat_ID1 IN (&[TestPatientList]&))
+AND NOT(Chklist.Pat_ID1 IN (SELECT Pat_ID1 FROM #testpt ))
 AND (Chklist.Due_DtTm>=CAST(  '&[ReportingStartDate]&' AS DATETIME)  
 AND Chklist.Due_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
 

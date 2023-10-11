@@ -1,3 +1,34 @@
+ 
+SELECT 
+Patient.Pat_ID1, 
+Last_Name, 
+First_Name, 
+Ident.IDA, 
+Ident.IDB, 
+Ident.IDC, 
+Clin_Status
+
+INTO #testpt
+FROM Patient
+INNER JOIN Ident ON Patient.Pat_ID1 = Ident.Pat_ID1 AND Ident.Version = 0
+Where 1=1 
+AND Clin_Status <>10
+AND 
+(UPPER(Last_Name) LIKE 'TEST%'
+OR  UPPER(Last_Name) LIKE 'ZZ%'
+OR  UPPER(Last_Name) LIKE 'XX%'
+--OR NOT(Ident.IDA LIKE '[0-9]%')
+--OR len(Ident.IDA) <> 7
+)
+
+
+
+
+ 
+ 
+ 
+ 
+ 
  SELECT 
 
  Staff_Primary.Staff_ID,
@@ -68,5 +99,5 @@ AND (Schedule.App_DtTm>= CAST(  '&[ReportingStartDate]&' AS DATETIME)
 AND Schedule.App_DtTm<CAST( '&[ReportingEndDate]&' AS DATETIME)) 
 --AND Staff_Location.Last_Name NOT  LIKE 'Z_%'
 AND Schedule.ESI_AppointmentID = ''
-AND NOT(Schedule.Pat_ID1 IN (&[TestPatientList]&) )
+AND NOT(Schedule.Pat_ID1 IN (SELECT Pat_ID1 FROM #testpt ))
  
